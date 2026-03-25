@@ -382,7 +382,7 @@ overflow-x: hidden;
     .about-title {
         font-size: 2.5rem;
         margin-bottom: 10px;
-        background: linear-gradient(to right, #ffffff, #40D0FB);
+        background: #ffffff
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
