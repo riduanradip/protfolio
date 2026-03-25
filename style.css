@@ -416,7 +416,7 @@ overflow-x: hidden;
                .header-socials {
     margin: 0px 10px 60px 0px ;
     position: absolute;
-    top: 10px; 
+    /* top: 10px;  */
     
     /* Distance from the very top */
     left: 50%;
