@@ -234,16 +234,16 @@ overflow-x: hidden;
     vertical-align: bottom; 
 }
 .header-socials {
-    margin: 0px 10px 60px 0px ;
+
     position: absolute;
-    top: 10px; 
+    top: 50px; 
     
     /* Distance from the very top */
     left: 50%;
     transform: translateX(-50%); /* Centers them horizontally */
     z-index: 10;
     display: flex;
-    gap: 12px;
+    gap: 20px;
 }
 
 /* Glassmorphism Button Style */
@@ -413,6 +413,18 @@ overflow-x: hidden;
 
         /* Mobile specific adjustments */
         @media (max-width: 600px) {
+               .header-socials {
+    margin: 0px 10px 60px 0px ;
+    position: absolute;
+    top: 10px; 
+    
+    /* Distance from the very top */
+    left: 50%;
+    transform: translateX(-50%); /* Centers them horizontally */
+    z-index: 10;
+    display: flex;
+    gap: 12px;
+}
             .featured-card { flex-direction: column; }
         .card-left { min-height: 400px; }
             .text-column {
