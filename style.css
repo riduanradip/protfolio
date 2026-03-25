@@ -235,7 +235,7 @@ overflow-x: hidden;
 }
 .header-socials {
     position: absolute;
-    top: 20px; /* Distance from the very top */
+    top: 10px; /* Distance from the very top */
     left: 50%;
     transform: translateX(-50%); /* Centers them horizontally */
     z-index: 10;
@@ -384,7 +384,7 @@ overflow-x: hidden;
         margin-bottom: 10px;
         background: #ffffff
         -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        /* -webkit-text-fill-color: transparent; */
     }
 
     .title-underline {
