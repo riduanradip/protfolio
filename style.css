@@ -1,0 +1,618 @@
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+overflow-x: hidden;
+        }
+        /* Project Grid Layout */
+.project-grid {
+    display: grid;
+    /* This allows the grid to use more screen width when available */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    max-width: 900px; /* Increase this to reduce empty side space on wide screens */
+    margin: 0 auto;
+}
+
+/* Three-Layer Card Design */
+.layered-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Required for the absolute line */
+    overflow: hidden; /* Clips the blue line to the card's curves */
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.3s ease, 
+                border-color 0.3s ease;
+}
+.layered-card:hover {
+    transform: translateY(-10px);
+    border-color: #40D0FB;
+    box-shadow: 0 10px 30px rgba(2, 86, 155, 0.3);
+}
+
+/* Layer 1: Top (Photo) */
+.card-top {
+    width: 100%;
+    height: 220px; /* Gives the image some breathing room */
+    background: #0d1117; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px; /* This prevents the "touching the edge" look */
+    border-bottom: 1px solid #30363d;
+}
+
+.card-top img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Shows the WHOLE screenshot without cutting */
+    border-radius: 8px; /* Rounds the corners of your app image */
+    transition: transform 0.3s ease;
+}
+.layered-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px; /* Thickness of your blue bar */
+    background: #02569B;
+    z-index: 10;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+.layered-card:hover {
+    transform: translateY(-8px);
+    border-color: #40D0FB; /* Smooth border transition */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+.layered-card:hover::before {
+    background: #40D0FB;
+    box-shadow: 0 0 15px rgba(64, 208, 251, 0.6);
+}
+/* Layer 2: Middle (Title) */
+.card-middle {
+    padding: 30px 20px 10px 20px;
+    /* REMOVE the border-top from here to prevent the 'break' */
+    border-top: none; 
+}
+.card-middle h3 {
+    color: #ffffff;
+    margin: 0;
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+}
+
+/* Layer 3: Footer (Description & Languages) */
+.card-footer {
+    padding: 0 20px 25px 20px; /* Breathing room at the bottom */
+}
+
+.card-footer p {
+    color: #8b949e;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* Language Chips Section */
+.language-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-top: 1px solid #30363d;
+    padding-top: 15px;
+}
+
+.lang-tag {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #40D0FB;
+    background: rgba(64, 208, 251, 0.1);
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(64, 208, 251, 0.2);
+}
+/* Button Row inside Footer */
+.card-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    flex: 1;
+    text-align: center;
+    padding: 10px 5px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+/* GitHub Repo Button - Outline Style */
+.btn-repo {
+    border: 6px solid #30363d;
+  
+}
+
+.btn-repo:hover {
+    background: #30363d;
+    border-color: #8b949e;
+}
+
+/* Live Demo Button - Solid Flutter Blue */
+.btn-demo {
+    background: #02569B;
+    color: #ffffff;
+}
+
+.btn-demo:hover {
+    background: #40D0FB;
+    box-shadow: 0 0 15px rgba(64, 208, 251, 0.4);
+}
+.viewport-fix {
+        width: 50vw; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 3. Forces images (Waves & Stats) to fill the width */
+    .full-width-image {
+        width: 100% !important;
+        display: block;
+        height: auto;
+    }
+
+    /* 4. Responsive Padding for text sections */
+    .text-section {
+        width: 100%;
+        padding: 20px;
+        text-align: left; /* Aligns project details to the left as requested */
+    }
+
+    .centered-header {
+        text-align: center;
+        width: 100%;
+    }
+        /* 1. Main Container: Responsive Width */
+.particle-dot {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(64, 208, 251, 0.4); /* Cyan color */
+        border-radius: 50%;
+        box-shadow: 0 0 10px #40D0FB;
+        animation: floatParticles 8s infinite ease-in-out;
+    }
+
+    @keyframes floatParticles {
+        0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
+        50% { transform: translateY(-40px) scale(1.5); opacity: 0.8; }
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    
+    }
+        .main-wrapper {
+            width: 100%;
+            max-width: 1100px; /* Perfect for desktop reading */
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        /* 2. Header & Footer Waves: Always 100% */
+.wave-container {
+    width: 100%;
+    position: relative;
+    display: block;
+    /* Using padding-bottom instead of margin often works better for background-like images */
+    /* padding-bottom: 100px;  */
+    overflow: hidden;
+}
+
+.wave-img {
+    width: 100%;
+    display: block;
+    /* Removes the tiny gap below images */
+    vertical-align: bottom; 
+}
+.header-socials {
+    position: absolute;
+    top: 20px; /* Distance from the very top */
+    left: 50%;
+    transform: translateX(-50%); /* Centers them horizontally */
+    z-index: 10;
+    display: flex;
+    gap: 12px;
+}
+
+/* Glassmorphism Button Style */
+.s-btn {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.1); /* Transparent glass look */
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+/* Individual Hover Colors */
+.s-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+.github:hover { border-color: #40D0FB; box-shadow: 0 0 10px rgba(64, 208, 251, 0.4); }
+.linkedin:hover { border-color: #0077b5; box-shadow: 0 0 10px rgba(0, 119, 181, 0.4); }
+.email:hover { border-color: #02569B; box-shadow: 0 0 10px rgba(2, 86, 155, 0.4); }
+        /* 3. Section Containers */
+        .content-section {
+            width: 100%;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        /* 4. THE FIX: Responsive Stats Grid */
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap; /* This ensures nothing is hidden */
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .stats-box {
+            flex: 1 1 450px; /* Grows to fit, but stacks if less than 450px */
+            max-width: 100%;
+        }
+
+        /* 5. Skill Icon Grid */
+        .skills-container img {
+            margin: 5px;
+            max-width: 100%;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #30363d;
+            width: 80%;
+            margin: 40px auto;
+        }
+.footer-wave-container {
+        width: 100vw; /* Uses 100% of the viewport width */
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        line-height: 0; /* Removes the 3px gap below images */
+    }
+
+    .footer-wave-container img {
+        width: 100%;
+        display: block; /* Removes bottom spacing */
+        height: auto;
+       
+    }
+    /* Desktop & Base Styles */
+    .about-container {
+        width: 100%;
+        max-width: 950px;
+        /* margin: 10px auto; */
+        padding: 20px;
+        color: #ffffff;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .about-flex-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .photo-column {
+        position: relative;
+        width: 220px;
+        height: 220px;
+    }
+
+  
+
+    .photo-frame {
+     position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 5px solid #0d1117; /* Matches your background to make border pop */
+        z-index: 2;
+        background: #161b22;
+    }
+
+    .photo-frame img {
+     width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .status-badge {
+   position: absolute;
+        bottom: 8px;
+        right: 8px;
+        background: #02569B;
+        color: white;
+        padding: 4px 14px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        z-index: 3;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    }
+
+    .text-column {
+        flex: 1;
+        min-width: 300px;
+        text-align: left;
+    }
+
+    .about-title {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        background: linear-gradient(to right, #ffffff, #40D0FB);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .title-underline {
+        width: 50px;
+        height: 4px;
+        background: #02569B;
+        margin-bottom: 20px;
+        border-radius: 2px;
+    }
+
+    .description-main {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #c9d1d9;
+        margin-bottom: 15px;
+    }
+
+    .description-sub {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #8b949e;
+    }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 600px) {
+            .featured-card { flex-direction: column; }
+        .card-left { min-height: 400px; }
+            .text-column {
+            text-align: center; /* Centers the text */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centers the underline and text blocks */
+        }
+        
+        .about-flex-wrapper {
+            gap: 30px;
+        }
+
+        .about-title {
+            font-size: 2rem;
+        }
+            .stats-box {
+                flex: 1 1 100%; /* Total 100% width on small phones */
+            }
+        }
+        .live-rainbow-border {
+        position: absolute;
+        inset: -6px; /* Size of the border */
+        background: conic-gradient(
+         grey
+        );
+        border-radius: 50%;
+        z-index: 1;
+        /* This makes the colors "Live Move" */
+        animation: spin-rainbow 3s linear infinite; 
+    }
+    /* projects page */
+    :root {
+        --bg-card: #161b22;
+        --bg-dark: #0d1117;
+        --flutter-blue: #02569B;
+        --cyan-accent: #40D0FB;
+        --border-color: #30363d;
+    }
+
+    .projects-section {
+        width: 100%;
+        max-width: 1000px;
+        margin: 40px auto;
+        position: relative;
+    }
+
+    .projects-slider {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none; /* Firefox */
+        scroll-behavior: smooth;
+        padding: 20px 0;
+    }
+
+    .projects-slider::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+
+    .project-wrapper {
+        flex: 0 0 100%;
+        scroll-snap-align: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .featured-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        display: flex;
+        width: 95%;
+        overflow: hidden;
+        min-height: 500px;
+    }
+
+    /* Left Side: Phone Frame */
+    .card-left {
+        flex: 1;
+        background: var(--bg-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+    }
+
+    .phone-frame {
+        width: 240px;
+        height: 480px;
+        background: #1b2735;
+        border: 8px solid var(--border-color);
+        border-radius: 36px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 30px rgba(64, 208, 251, 0.1);
+    }
+/* Makes your Hire/Collaborate badges glow on hover */
+div a img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+div a img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(64, 208, 251, 0.4);
+}
+    .placeholder-content {
+        text-align: center;
+        color: #8b949e;
+        margin-top: 180px;
+        padding: 10px;
+    }
+
+    /* Right Side: Text Info */
+    .card-right {
+        flex: 1.2;
+        padding: 50px;
+        color: white;
+        font-family: sans-serif;
+    }
+
+    .category-tag { color: var(--cyan-accent); font-size: 0.75rem; font-weight: bold; letter-spacing: 1.5px; }
+    .project-title { font-size: 2.2rem; margin: 15px 0; }
+    .project-desc { color: #8b949e; line-height: 1.6; margin-bottom: 25px; }
+
+    .tech-tags span {
+        display: inline-block;
+        border: 1px solid var(--flutter-blue);
+        color: var(--cyan-accent);
+        padding: 5px 12px;
+        border-radius: 4px;
+        margin: 0 8px 8px 0;
+        font-size: 0.85rem;
+    }
+
+    .btn-row { display: flex; gap: 15px; margin-top: 20px; }
+    .btn-primary { background: var(--flutter-blue); color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold; }
+    .btn-outline { border: 1px solid var(--border-color); color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; }
+
+    /* Bottom Dots */
+    .slider-dots {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        background: var(--border-color);
+        border-radius: 50%;
+        transition: 0.3s;
+        text-decoration: none;
+    }
+
+    .dot:hover, .dot:target, .dot.active {
+        background: var(--cyan-accent);
+        transform: scale(1.2);
+    }
+
+    /* selected projects */
+  .section-header {
+    clear: both; /* Ensures it doesn't float into the wave's space */
+    margin-top: 40px; /* Extra push to be safe */
+    position: relative;
+    z-index: 5;
+}
+
+.main-title {
+    font-size: clamp(2rem, 5vw, 3.5rem); /* Responsive size */
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Style for "Selected" */
+.bold-text {
+    color: #ffffff;
+    font-weight: 900;
+}
+
+/* Style for "Work" - Outline Effect */
+.outline-text {
+    color: transparent;
+    font-weight: 900;
+    -webkit-text-stroke: 1px #40D0FB; /* Cyan outline */
+    transition: all 0.4s ease;
+}
+
+/* Hover effect: Fill the outline when looking at the section */
+.section-header:hover .outline-text {
+    color: #40D0FB;
+    -webkit-text-stroke: 1px transparent;
+    text-shadow: 0 0 20px rgba(64, 208, 251, 0.4);
+}
+
+.accent-line {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #02569B, #40D0FB);
+    margin: 0 auto;
+    border-radius: 10px;
+}
